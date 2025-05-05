@@ -4,7 +4,7 @@ export const API_KEY = import.meta.env.VITE_API_KEY;
 
 
 // NOTE: Move this function to a new module file when it works pls.
-const API = 'current.json'
+export const API = 'current.json'
 export async function fetchDataTest() {
 
 	// User defined params this is just an example
