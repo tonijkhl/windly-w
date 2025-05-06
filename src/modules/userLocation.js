@@ -32,30 +32,28 @@ async function IPLookup() {
 
 // ___________________________ Geolocation API ___________________________
 export async function getUserLocation() {
-    if ("geolocation" in navigator) {
-        return new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const coords = `${position.coords.latitude},${position.coords.longitude}`
-                    resolve(coords)
-                },
-                async (error) => {
-                    console.error("Error getting location: ", error)
-                    try {
-                        const IP = await getUserIP()
-                        resolve(IP)
-                    } catch (ipError) {
-                        reject(ipError)
-                    }
-                }
-            )
-        })
-    } else {
-        try {
-            const IP = await getUserIP()
-            return IP
-        } catch (error) {
-            throw new Error("Failed to get IP location")
-        }
-    }
+	if ("geolocation" in navigator) {
+		return new Promise((resolve, reject) => {
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					const coords = `${position.coords.latitude},${position.coords.longitude}`
+					resolve(coords)
+				},
+				async (error) => {
+					console.error("Error getting location: ", error)
+					try {
+						const IP = await getUserIP()
+						resolve(IP)
+					} catch (ipError) {
+						reject(ipError)
+					}
+                		})
+        	})
+	} else {
+	try {
+		const IP = await getUserIP()
+		return IP
+	} catch (error) {
+		throw new Error("Failed to get IP location")
+	}}
 }
